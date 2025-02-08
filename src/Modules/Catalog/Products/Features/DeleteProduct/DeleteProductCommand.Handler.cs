@@ -9,7 +9,7 @@ internal class DeleteProductCommandHandler(CatalogDbContext context)
             .FindAsync([command.ProductId], cancellationToken);
         
         if (product is null)
-            throw new Exception($"Product not found: {command.ProductId}");
+            throw new ProductNotFoundException(command.ProductId);
         
         context.Products.Remove(product);
         await context.SaveChangesAsync(cancellationToken);

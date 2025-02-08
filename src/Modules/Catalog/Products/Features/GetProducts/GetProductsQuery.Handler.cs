@@ -5,13 +5,27 @@ internal class GetProductsQueryHandler(CatalogDbContext context)
 {
     public async Task<GetProductsQueryResponse> Handle(GetProductsQuery query, CancellationToken cancellationToken)
     {
+        var pageIndex = query.PaginatedRequest.PageIndex;
+        var pageSize = query.PaginatedRequest.PageSize;
+
+        var totalCount = await context.Products.LongCountAsync(cancellationToken);
+        
         var products = await context.Products
             .AsNoTracking()
             .OrderBy(p => p.Name)
+            .Skip(pageSize * pageIndex)
+            .Take(pageSize)
             .ToListAsync(cancellationToken);
 
         var productDtos = products.Adapt<List<ProductDto>>();
 
-        return new GetProductsQueryResponse(productDtos);
+        return new GetProductsQueryResponse(
+            new PaginatedResult<ProductDto>(
+                pageIndex, 
+                pageSize, 
+                totalCount, 
+                productDtos
+            )
+        );
     }
 }

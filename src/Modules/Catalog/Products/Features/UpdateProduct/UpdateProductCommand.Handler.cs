@@ -9,9 +9,9 @@ internal class UpdateProductCommandHandler(CatalogDbContext context)
             .FindAsync([command.Product.Id], cancellationToken);
 
         if (product is null)
-            throw new Exception($"Product not found: {command.Product.Id}");
+            throw new ProductNotFoundException(command.Product.Id);
 
-        UpdateProductWithNewValues(product, command.Product);
+        UpdateProductWithNewValues(product, command.Product); 
 
         context.Products.Update(product);
         await context.SaveChangesAsync(cancellationToken);

@@ -1,3 +1,3 @@
 ﻿namespace Catalog.Products.Features.GetProductsByCategory;
 
-public record GetProductsByCategoryQuery(string Category) : IQuery<GetProductsByCategoryQueryResponse>;
+public record GetProductsByCategoryQuery(PaginatedRequest PaginatedRequest, string Category) : IQuery<GetProductsByCategoryQueryResponse>;
