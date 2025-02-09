@@ -1,4 +1,4 @@
-## EShop Modulith
+## EShop Modulith :shopping_cart:
 
 This project is based on the Udemy course [“.NET Backend Bootcamp: Modulith vs. DDD, CQRS, and Outbox”](https://www.udemy.com/course/net-backend-bootcamp-modulith-vsa-ddd-cqrs-and-outbox/). 
 
