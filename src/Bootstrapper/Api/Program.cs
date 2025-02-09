@@ -1,3 +1,5 @@
+using Keycloak.AuthServices.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, config) => 
@@ -37,6 +39,12 @@ builder.Services
     );
 
 builder.Services
+    .AddKeycloakWebApiAuthentication(builder.Configuration);
+
+builder.Services
+    .AddAuthorization();
+
+builder.Services
     .AddCatalogModule(builder.Configuration)
     .AddBasketModule(builder.Configuration)
     .AddOrderingModule(builder.Configuration);
@@ -50,6 +58,8 @@ var app = builder.Build();
 
 app.MapCarter();
 app.UseSerilogRequestLogging();
+app.UseAuthentication();
+app.UseAuthorization();
 
 // Configure the HTTP request pipeline
 app
