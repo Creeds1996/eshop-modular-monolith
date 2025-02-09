@@ -4,12 +4,12 @@ public class CatalogDbContext(DbContextOptions<CatalogDbContext> options) : DbCo
 {
     public DbSet<Product> Products => Set<Product>();
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        modelBuilder.HasDefaultSchema("catalog");
+        builder.HasDefaultSchema("catalog");
         
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         
-        base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(builder);
     }
 }

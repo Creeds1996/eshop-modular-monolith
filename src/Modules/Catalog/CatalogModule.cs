@@ -10,19 +10,6 @@ public static class CatalogModule
 {
     public static IServiceCollection AddCatalogModule(this IServiceCollection services, IConfiguration configuration)
     {
-        // AddServices to the container
-        // Api Endpoint Services
-        // Application Use Case Services
-        services.AddMediatR(config =>
-        {
-            config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-            config.AddOpenBehavior(typeof(ValidationBehavior<,>));
-            config.AddOpenBehavior(typeof(LoggingBehavior<,>));
-        });
-
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        
-        // Infrastructure Services
         var connectionString = configuration.GetConnectionString("Database");
 
         services.AddScoped<ISaveChangesInterceptor, AuditEntityInterceptor>();
@@ -43,10 +30,6 @@ public static class CatalogModule
 
     public static IApplicationBuilder UseCatalogModule(this IApplicationBuilder app)
     {
-        // Configure the HTTP request pipeline
-        // Api Endpoint Services
-        // Application Use Case Services
-        // Infrastructure Services
         app.UseMigration<CatalogDbContext>();
         
         return app;
