@@ -30,6 +30,13 @@ builder.Services
     });
 
 builder.Services
+    .AddMassTransitWithAssemblies(
+        builder.Configuration,
+        catalogAssembly,
+        basketAssembly
+    );
+
+builder.Services
     .AddCatalogModule(builder.Configuration)
     .AddBasketModule(builder.Configuration)
     .AddOrderingModule(builder.Configuration);

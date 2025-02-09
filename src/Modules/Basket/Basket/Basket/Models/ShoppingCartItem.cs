@@ -39,4 +39,10 @@ public class ShoppingCartItem : Entity<Guid>
         Price = price;
         ProductName = productName;
     }
+    
+    public void UpdatePrice(decimal price)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
+        Price = price;
+    }
 }

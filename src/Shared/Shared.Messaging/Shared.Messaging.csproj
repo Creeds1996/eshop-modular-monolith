@@ -7,9 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Shared\Shared.Messaging\Shared.Messaging.csproj" />
-      <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
-      <ProjectReference Include="..\Catalog.Contracts\Catalog.Contracts.csproj" />
+      <PackageReference Include="MassTransit" Version="8.3.7-develop.2216" />
+      <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.7-develop.2216" />
     </ItemGroup>
 
 </Project>
