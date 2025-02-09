@@ -13,3 +13,6 @@ The project has been upgraded to **.NET 9**, along with newer versions of some d
   - Restrict product creation, modification, and deletion to admin users only
 
 (More improvements to come!)
+
+### Issues
+- [ ] Cached baskets are not invalidated when a product price is updated
