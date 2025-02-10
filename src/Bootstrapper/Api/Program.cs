@@ -7,22 +7,25 @@ builder.Host.UseSerilog((context, config) =>
 
 var catalogAssembly = typeof(CatalogModule).Assembly;
 var basketAssembly = typeof(BasketModule).Assembly;
+var orderingAssembly = typeof(OrderingModule).Assembly;
 
 builder.Services
     .AddCarterWithAssemblies(
         catalogAssembly,
-        basketAssembly
+        basketAssembly,
+        orderingAssembly
     );
 
 builder.Services
     .AddMediatRWithAssemblies(
         catalogAssembly, 
-        basketAssembly
+        basketAssembly,
+        orderingAssembly
     );
 
 builder.Services
     .AddValidatorsFromAssemblies(
-        [catalogAssembly, basketAssembly]
+        [catalogAssembly, basketAssembly, orderingAssembly]
     );
 
 builder.Services
@@ -35,7 +38,8 @@ builder.Services
     .AddMassTransitWithAssemblies(
         builder.Configuration,
         catalogAssembly,
-        basketAssembly
+        basketAssembly,
+        orderingAssembly
     );
 
 builder.Services
